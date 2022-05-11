@@ -11,7 +11,7 @@ namespace ShopManagement.ConsoleApp
             while (true)
             {
                 Console.WriteLine("Enter your command:");
-                string command = Console.ReadLine();
+                string command = Console.ReadLine().ToLower();
 
                 appService.Process(command);
                 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagement.ConsoleApp.Services
 {
+    // all the logic
     public class ShopService
     {
         private List<ShopItem> _items;
@@ -27,16 +28,16 @@ namespace ShopManagement.ConsoleApp.Services
             _items.Add(item);
         }
 
-        //internal void Add(string v1, string v2)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void Remove(string name)
         {
             _items.Where(i => i.Name != name).ToList();
         }
 
+        public void Set(string name, int quantity)
+        {
+            var item = _items.First(i => i.Name == name);
+            item.Quantity = quantity;
+        }
         public List<ShopItem> Get()
         {
             return _items;

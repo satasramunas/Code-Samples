@@ -1,0 +1,7 @@
+﻿Let's create a console aplication for warehouse item management.
+
+The app should allow the following commands:
+'Add <ShopItemName> <Price>' -> Should add an item with <ShopItemName>
+'Remove <ShopItemName>' -> Should remove an item with name
+'List' -> Should list all the items information.
+'Exit' -> Should close the application.

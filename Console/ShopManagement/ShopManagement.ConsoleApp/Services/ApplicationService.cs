@@ -18,10 +18,10 @@ namespace ShopManagement.ConsoleApp.Services
 
         public void Process(string command)
         {
-            if (command.StartsWith("add".Trim()))
+            if (command.StartsWith("add"))
             {
                 string[] splitCommand = command.Split(' ');
-                _shopService.Add(splitCommand[1], int.Parse(splitCommand[2]));
+                _shopService.Add(splitCommand[1], int.Parse(splitCommand[2])); 
             }
 
             else if (command.StartsWith("remove"))

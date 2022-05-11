@@ -3,7 +3,7 @@ Shop management system should allow the following commands:
 "Add <ShopItemName> <quantity>" -> Should add the following item +
 "Remove <ShopItemName>" -> Should remove the following item. +
 "Show" -> Should Display the following items. (name and quantities) +
-"Set <ShopItemName> <quantity>" -> should update the quantity of the item
+"Set <ShopItemName> <quantity>" -> should update the quantity of the item +
 
 The program should keep in a While loop.
 

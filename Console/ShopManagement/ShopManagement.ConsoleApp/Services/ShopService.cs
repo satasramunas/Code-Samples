@@ -17,6 +17,7 @@ namespace ShopManagement.ConsoleApp.Services
             _items = new List<ShopItem>();
         }
 
+        // use LINQ any! Record even smarter
         public void Add(string name, int quantity)
         {
             ShopItem item = new ShopItem()
@@ -24,8 +25,6 @@ namespace ShopManagement.ConsoleApp.Services
                 Name = name,
                 Quantity = quantity
             };
-
-            _items.Add(item);
         }
 
         public void Remove(string name)
@@ -35,7 +34,7 @@ namespace ShopManagement.ConsoleApp.Services
 
         public void Set(string name, int quantity)
         {
-            var item = _items.First(i => i.Name == name);
+            ShopItem item = _items.First(i => i.Name == name);
             item.Quantity = quantity;
         }
         public List<ShopItem> Get()

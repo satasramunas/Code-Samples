@@ -5,7 +5,7 @@ var appService = new AppService();
 while (true)
 {
     Console.WriteLine("Enter your command:");
-    string command = Console.ReadLine().ToLower();
+    string command = Console.ReadLine().ToLower().Trim();
 
     appService.Process(command);
 }

@@ -53,7 +53,7 @@ namespace ShopApp.Services
                 }
 
                 else
-                    Console.WriteLine("Incorrect command");
+                    Console.WriteLine("The command was not recognized! ");
             }
             catch (Exception ex)
             { Console.WriteLine("Something went wrong, please check your input and try again"); }

@@ -48,12 +48,31 @@ namespace ShopApp.Services
 
                 else if (command.StartsWith("exit"))
                 {
-                    string[] splitCommand = command.Split(' ');
                     Environment.Exit(0);
                 }
 
+                else if (command.StartsWith("show balance"))
+                {
+                    string[] splitCommand = command.Split(' ');
+                }
+
+                else if (command.StartsWith("topup"))
+                {
+
+                }
+
+                else if (command.StartsWith("show items"))
+                {
+
+                }
+
+                else if (command.StartsWith("buy"))
+                {
+
+                }
+
                 else
-                    Console.WriteLine("The command was not recognized! ");
+                    Console.WriteLine("The command was not recognized!");
             }
             catch (Exception ex)
             { Console.WriteLine("Something went wrong, please check your input and try again"); }

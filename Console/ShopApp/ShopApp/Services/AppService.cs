@@ -10,9 +10,11 @@ namespace ShopApp.Services
     public class AppService
     {
         private ShopService _shopService;
+        private CustomerService _customerService;
         public AppService()
         {
             _shopService = new ShopService();
+            _customerService = new CustomerService();
         }
 
         public void Process(string command)
@@ -53,22 +55,29 @@ namespace ShopApp.Services
 
                 else if (command.StartsWith("show balance"))
                 {
-                    string[] splitCommand = command.Split(' ');
+                    Console.WriteLine($"{_customerService.Balance()}");
+                    
                 }
 
                 else if (command.StartsWith("topup"))
                 {
-
+                    string[] splitCommand = command.Split(' ');
+                    _customerService.TopUp(decimal.Parse(splitCommand[1]));
                 }
 
                 else if (command.StartsWith("show items"))
                 {
-
+                    List<CustomerItem> boughtItems = _customerService.GetBoughtItems();
+                    foreach (CustomerItem item in boughtItems)
+                    {
+                        Console.WriteLine($"ItemName: {item.Name}");
+                    }
                 }
 
                 else if (command.StartsWith("buy"))
                 {
-
+                    string[] splitCommand = command.Split(' ');
+                    _customerService.Buy(splitCommand[1], int.Parse(splitCommand[2]));
                 }
 
                 else

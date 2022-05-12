@@ -25,6 +25,12 @@ namespace ShopManagement.ConsoleApp.Services
                 Name = name,
                 Quantity = quantity
             };
+            if (!_items.Any(x => x.Name == name))
+            {
+                _items.Add(item);
+            }
+            else
+                Console.WriteLine("This item is already on the list!");
         }
 
         public void Remove(string name)

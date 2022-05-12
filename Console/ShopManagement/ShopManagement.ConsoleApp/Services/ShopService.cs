@@ -35,7 +35,7 @@ namespace ShopManagement.ConsoleApp.Services
 
         public void Remove(string name)
         {
-            _items.Where(i => i.Name != name).ToList();
+            _items = _items.Where(i => i.Name != name).ToList();
         }
 
         public void Set(string name, int quantity)

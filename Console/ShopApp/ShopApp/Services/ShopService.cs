@@ -44,7 +44,7 @@ namespace ShopApp.Services
             item.Quantity = quantity;
         }
 
-        public List<ShopItem> Get()
+        public List<ShopItem> GetShopItems()
         {
             return _items;
         }

@@ -33,7 +33,7 @@ namespace ShopApp.Services
 
                 else if (command.StartsWith("show inventory"))
                 {
-                    List<ShopItem> items = _shopService.Get();
+                    List<ShopItem> items = _shopService.GetShopItems();
                     foreach (ShopItem item in items)
                     {
                         Console.WriteLine($"ItemName: {item.Name}, Price: {item.Price}, Quantity: {item.Quantity}");

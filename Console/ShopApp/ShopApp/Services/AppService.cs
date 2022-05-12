@@ -26,65 +26,91 @@ namespace ShopApp.Services
                     string[] splitCommand = command.Split(' ');
                     _shopService.Add(splitCommand[1], decimal.Parse(splitCommand[2]), int.Parse(splitCommand[3]));
                 }
+            }
+            catch (Exception ex)
+            { Console.WriteLine("Please check your input and try again"); }
 
-                else if (command.StartsWith("remove"))
+            try
+            {
+                if (command.StartsWith("remove"))
                 {
                     string[] splitCommand = command.Split(' ');
                     _shopService.Remove(splitCommand[1]);
                 }
+            }
+            catch (Exception ex)
+            { Console.WriteLine("Please try again"); }
 
-                else if (command.StartsWith("show inventory"))
+            try
+            {
+                if (command.StartsWith("show inventory"))
                 {
                     List<ShopItem> items = _shopService.GetShopItems();
-                    foreach (ShopItem item in items)
+                    if (items.Count > 0)
                     {
-                        Console.WriteLine($"ItemName: {item.Name}, Price: {item.Price}, Quantity: {item.Quantity}");
+                        foreach (ShopItem item in items)
+                        {
+                            Console.WriteLine($"ItemName: {item.Name}, Price: {item.Price}, Quantity: {item.Quantity}");
+                        }
                     }
+                    else
+                        Console.WriteLine("The shop has no items");
                 }
+            }
+            catch (Exception ex)
+            { Console.WriteLine("Try again"); }
 
-                else if (command.StartsWith("set"))
+            try
+            {
+                if (command.StartsWith("set"))
                 {
                     string[] splitCommand = command.Split(' ');
                     _shopService.Set(splitCommand[1], int.Parse(splitCommand[2]));
                 }
+            }
+            catch (Exception ex)
+            { Console.WriteLine("Please check your input and try again"); }
 
-                else if (command.StartsWith("exit"))
+            if (command.StartsWith("show items"))
+            {
+                List<CustomerItem> boughtItems = _customerService.GetBoughtItems();
+                if (boughtItems.Count > 0)
                 {
-                    Environment.Exit(0);
-                }
-
-                else if (command.StartsWith("show balance"))
-                {
-                    Console.WriteLine($"{_customerService.Balance()}");
-                    
-                }
-
-                else if (command.StartsWith("topup"))
-                {
-                    string[] splitCommand = command.Split(' ');
-                    _customerService.TopUp(decimal.Parse(splitCommand[1]));
-                }
-
-                else if (command.StartsWith("show items"))
-                {
-                    List<CustomerItem> boughtItems = _customerService.GetBoughtItems();
                     foreach (CustomerItem item in boughtItems)
                     {
                         Console.WriteLine($"ItemName: {item.Name}");
                     }
                 }
-
-                else if (command.StartsWith("buy"))
-                {
-                    string[] splitCommand = command.Split(' ');
-                    _customerService.Buy(splitCommand[1], int.Parse(splitCommand[2]));
-                }
-
                 else
-                    Console.WriteLine("The command was not recognized!");
+                    Console.WriteLine("The customer hasn't bought anything yet");
             }
-            catch (Exception ex)
-            { Console.WriteLine("Something went wrong, please check your input and try again"); }
+        
+                
+            if (command.StartsWith("exit"))
+            {
+                Environment.Exit(0);
+            }
+
+            if (command.StartsWith("show balance"))
+            {
+                Console.WriteLine($"{_customerService.Balance()}");
+
+            }
+
+            if (command.StartsWith("topup"))
+            {
+                string[] splitCommand = command.Split(' ');
+                _customerService.TopUp(decimal.Parse(splitCommand[1]));
+            }
+
+            if (command.StartsWith("buy"))
+            {
+                string[] splitCommand = command.Split(' ');
+                _customerService.Buy(splitCommand[1], int.Parse(splitCommand[2]));
+            }
+
         }
     }
 }
+
+

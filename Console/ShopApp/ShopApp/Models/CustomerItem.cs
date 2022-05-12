@@ -8,6 +8,7 @@ namespace ShopApp.Models
 {
     public class CustomerItem
     {
+        public string Name { get; set; }
         public decimal Balance { get; set; } = 20.0M;
     }
 }

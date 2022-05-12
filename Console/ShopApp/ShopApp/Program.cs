@@ -1,2 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using ShopApp.Services;
+
+var appService = new AppService();
+while (true)
+{
+    Console.WriteLine("Enter your command:");
+    string command = Console.ReadLine().ToLower();
+
+    appService.Process(command);
+}

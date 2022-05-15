@@ -93,7 +93,7 @@ namespace ShopApp.Services
 
             if (command.StartsWith("show balance"))
             {
-                Console.WriteLine($"{_customerService.Balance()}");
+                Console.WriteLine($"{_customerService.GetBalance()}");
 
             }
 

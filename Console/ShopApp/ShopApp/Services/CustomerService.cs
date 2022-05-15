@@ -16,7 +16,7 @@ namespace ShopApp.Services
             _boughtItems = new List<CustomerItem>();
         }
 
-        public decimal Balance()
+        public decimal GetBalance()
         {
             CustomerItem item = new CustomerItem();
             return item.Balance;

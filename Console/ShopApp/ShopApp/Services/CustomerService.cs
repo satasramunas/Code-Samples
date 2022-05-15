@@ -14,7 +14,7 @@ namespace ShopApp.Services
 
         public CustomerService()
         {
-            _boughtItems = new List<CustomerItem>();
+            _boughtItems = new List<CustomerItem>();    // we can also put this customer _boughtItems list in CustomerItem.cs
         }
 
         public decimal GetBalance()

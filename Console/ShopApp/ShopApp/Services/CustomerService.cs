@@ -10,6 +10,7 @@ namespace ShopApp.Services
     public class CustomerService
     {
         private List<CustomerItem> _boughtItems;
+        private CustomerItem _customer;
 
         public CustomerService()
         {
@@ -18,8 +19,7 @@ namespace ShopApp.Services
 
         public decimal GetBalance()
         {
-            CustomerItem item = new CustomerItem();
-            return item.Balance;
+            return _customer.Balance;
         }
 
         public void TopUp(decimal balance)

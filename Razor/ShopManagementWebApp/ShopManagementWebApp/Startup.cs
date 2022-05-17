@@ -25,7 +25,8 @@ namespace ShopManagementWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ShopService>();
+            services.AddSingleton<ShopService>(); // a singleton becase we need to hold information
+            //services.AddTransient<ShopService>(); // we would use this if we dont need to keep/hold info
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

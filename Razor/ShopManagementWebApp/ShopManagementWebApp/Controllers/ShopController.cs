@@ -37,5 +37,11 @@ namespace ShopManagementWebApp.Controllers
             _shopService.Add(item);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Delete(string name)
+        {
+            _shopService.Delete(name);
+            return RedirectToAction("Index");
+        }
     }
 }

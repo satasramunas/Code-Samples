@@ -16,14 +16,14 @@
     </tr>
   </thead>
   <tbody>
-      @foreach (var todo in @Model)
+      @foreach (var item in @Model)
         {
         <tr>
           <th scope="row"></th>
-          <td>@todo.Name</td>
-          <td>@todo.ShopName</td>
-          <td>@todo.ExpiryDate</td>
-          <td>@Html.ActionLink("Remove", "Delete", "Todo", new { Name = @todo.Name})</td>
+          <td>@item.Name</td>
+          <td>@item.ShopName</td>
+          <td>@item.ExpiryDate</td>
+          <td>@Html.ActionLink("Remove", "Delete", "Shop", new { Name = @item.Name})</td>
         </tr>
         }
     

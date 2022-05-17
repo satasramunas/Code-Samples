@@ -18,7 +18,7 @@ namespace ShopManagementWebApp.Services
             new Shop()
             {
                 Name = "Butter",
-                ExpiryDate = System.DateTime.Now,
+                ExpiryDate = System.DateTime.Now.AddMonths(2),
                 ShopName = "Butter shop"
             }
         };

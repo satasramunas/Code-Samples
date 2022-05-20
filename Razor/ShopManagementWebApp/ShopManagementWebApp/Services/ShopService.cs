@@ -12,6 +12,7 @@ namespace ShopManagementWebApp.Services
         public ShopService(DataContext dataContext)
         {
             _dataContext = dataContext;
+            // through dependency injection
         }
 
         public List<ShopItem> GetAll()

@@ -12,13 +12,15 @@ namespace ShopManagementWebApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var users = new List<User>();
+            return View(users);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            var user = new User();
+            return View(user);
         }
 
         [HttpPost]

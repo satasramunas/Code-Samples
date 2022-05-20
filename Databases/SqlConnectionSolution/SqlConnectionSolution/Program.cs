@@ -8,4 +8,12 @@ SqlConnection cnn;
 connectionString = @"Server=.;Database=TestDataBase;Trusted_Connection=True;";
 cnn = new SqlConnection(connectionString);
 cnn.Open();
+
+string insertText = @"insert into Persons (PersonID, LastName, FirstName, Address, City)
+Values (1, 'name1', 'firstName1', 'blabla street', 'blablacity')";
+
+var command = cnn.CreateCommand();
+command.CommandText = insertText;
+command.ExecuteNonQuery();
+
 cnn.Close();

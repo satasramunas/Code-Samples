@@ -1,4 +1,5 @@
-﻿using ShopManagementWebApp.Models;
+﻿using ShopManagementWebApp.Data;
+using ShopManagementWebApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,30 +7,32 @@ namespace ShopManagementWebApp.Services
 {
     public class ShopService
     {
+        private DataContext _dataContext;
 
-        private List<ShopItem> _items = new List<ShopItem>
+        public ShopService(DataContext dataContext)
         {
-            new ShopItem()
-            {
-                Name = "Butter",
-                ExpiryDate = System.DateTime.Now.AddMonths(2),
-                ShopName = "Butter shop"
-            }
-        };
+            _dataContext = dataContext;
+        }
 
         public List<ShopItem> GetAll()
         {
-            return _items.OrderBy(i => i.ExpiryDate).ToList();
+            return _dataContext.Items.ToList();
         }
 
         public void Add(ShopItem item)
         {
-            _items.Add(item);
+            _dataContext.Items.Add(item);
+            _dataContext.SaveChanges();
         }
 
         public void Delete(string name)
         {
-            _items = _items.Where(x => x.Name != name).ToList();
+           var item = _dataContext.Items.FirstOrDefault(t => t.Name == name);
+            _dataContext.Items.Remove(item);
+            _dataContext.SaveChanges();
+            // these lines intad of the one that's below
+
+            //_items = _items.Where(x => x.Name != name).ToList();
         }
     }
 }

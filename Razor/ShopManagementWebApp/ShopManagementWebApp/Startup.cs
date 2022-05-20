@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ShopManagementWebApp.Data;
 using ShopManagementWebApp.Services;
 using System;
 using System.Collections.Generic;
@@ -25,7 +27,12 @@ namespace ShopManagementWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<ShopService>(); // a singleton becase we need to hold information
+
+            // kai naudojam sql server, turim perduoti connection stringa
+            var defaultConnectionString = Configuration.GetConnectionString("Default");
+            services.AddDbContext<DataContext>(c => c.UseSqlServer(defaultConnectionString));
+
+            services.AddTransient<ShopService>(); // a singleton because we need to hold information
             //services.AddTransient<ShopService>(); // we would use this if we dont need to keep/hold info
         }
 

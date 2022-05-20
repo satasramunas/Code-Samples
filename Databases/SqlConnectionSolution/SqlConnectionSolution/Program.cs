@@ -19,3 +19,5 @@ command.CommandText = insertText;
 command.ExecuteNonQuery();
 
 cnn.Close();
+
+// we have to open and close the connection after every command!

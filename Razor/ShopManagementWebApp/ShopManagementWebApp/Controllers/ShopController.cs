@@ -27,12 +27,12 @@ namespace ShopManagementWebApp.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            Shop item = new Shop();
+            ShopItem item = new ShopItem();
             return View(item);
         }
 
         [HttpPost]
-        public IActionResult Add(Shop item)
+        public IActionResult Add(ShopItem item)
         {
             _shopService.Add(item);
             return RedirectToAction("Index");

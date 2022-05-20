@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShopManagementWebApp.Models
 {
-    public class Shop
+    public class ShopItem
     {
         public string Name { get; set; }
 

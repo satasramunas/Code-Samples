@@ -1,21 +1,15 @@
 ﻿using ShopManagementWebApp.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManagementWebApp.Services
 {
     public class ShopService
     {
-        public ShopService()
-        {
-        }
 
-        private List<Shop> _items = new List<Shop>()
+        private List<ShopItem> _items = new List<ShopItem>
         {
-            new Shop()
+            new ShopItem()
             {
                 Name = "Butter",
                 ExpiryDate = System.DateTime.Now.AddMonths(2),
@@ -23,12 +17,12 @@ namespace ShopManagementWebApp.Services
             }
         };
 
-        public List<Shop> GetAll()
+        public List<ShopItem> GetAll()
         {
-            return _items;
+            return _items.OrderBy(i => i.ExpiryDate).ToList();
         }
 
-        public void Add(Shop item)
+        public void Add(ShopItem item)
         {
             _items.Add(item);
         }

@@ -60,9 +60,7 @@ namespace ShopApp.Services
 
         public void TopUp(decimal money)
         {
-            {
                 _customer.Balance += money;
-            }
         }
 
         public void Buy(string name, int quantity)

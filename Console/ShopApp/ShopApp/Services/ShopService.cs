@@ -11,10 +11,16 @@ namespace ShopApp.Services
     public class ShopService
     {
         private List<ShopItem> _items;
+        private List<ShopItem> _boughtItems;
+        private CustomerItem _customer;
+
+        public decimal Balance { get; private set; }
 
         public ShopService()
         {
             _items = new List<ShopItem>();
+            _boughtItems = new List<ShopItem>();
+            _customer = new CustomerItem();
         }
 
         public void Add(string name, decimal price, int quantity)
@@ -47,6 +53,48 @@ namespace ShopApp.Services
         public List<ShopItem> GetShopItems()
         {
             return _items;
+        }
+
+        public decimal GetBalance()
+        {
+            return _customer.Balance;
+        }
+
+        public void TopUp(decimal balance)
+        {
+            {
+                Balance = _customer.Balance += balance;
+            }
+        }
+
+        public void Buy(string name, int quantity)
+        {
+            try
+            {
+                var item = _items.First(x => x.Name == name);
+                if (item.Quantity >= quantity)
+                {
+                    if (item.Price * quantity <= _customer.Balance)
+                    {
+                        item.Quantity -= quantity;
+                        _customer.Balance -= item.Price * quantity;
+                        _boughtItems.Add(item);
+                    }
+                    else
+                        Console.WriteLine("Customer does not have enaugh money");
+                }
+                else
+                    Console.WriteLine("The shop does not have enaugh items");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Shop item not found");
+            }
+        }
+
+        public List<ShopItem> GetBoughtItems()
+        {
+            return _boughtItems;
         }
     }
 }

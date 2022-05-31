@@ -9,106 +9,68 @@ namespace ShopApp.Services
 {
     public class AppService
     {
-        private ShopService _shopService;
-        //private ShopService _customerService;
-        public AppService()
-        {
-            _shopService = new ShopService();
-            //_customerService = new ShopService();
-        }
+        private readonly ShopService _shopService = new ShopService(); // don't need the constructor anymore
 
         public void Process(string command)
         {
             try
             {
+                string[] splitCommand = command.Split(' ');
+
                 if (command.StartsWith("add"))
                 {
-                    string[] splitCommand = command.Split(' ');
                     _shopService.Add(splitCommand[1], decimal.Parse(splitCommand[2]), int.Parse(splitCommand[3]));
                 }
-            }
-            catch (Exception ex)
-            { Console.WriteLine("Please check your input and try again"); }
-
-            try
-            {
-                if (command.StartsWith("remove"))
+                else if (command.StartsWith("remove"))
                 {
-                    string[] splitCommand = command.Split(' ');
                     _shopService.Remove(splitCommand[1]);
                 }
-            }
-            catch (Exception ex)
-            { Console.WriteLine("Please try again"); }
-
-            try
-            {
-                if (command.StartsWith("show inventory"))
+                else if (command.StartsWith("show inventory"))
                 {
-                    List<ShopItem> items = _shopService.GetShopItems();
-                    if (items.Count > 0)
-                    {
-                        foreach (ShopItem item in items)
-                        {
-                            Console.WriteLine($"ItemName: {item.Name}, Price: {item.Price}, Quantity: {item.Quantity}");
-                        }
-                    }
-                    else
-                        Console.WriteLine("The shop has no items");
+                    List<ShopItem> items = _shopService.GetShopItems(); // gets all the information
+
+                    items.ForEach(i => Console.WriteLine(i.ToString())); // writes the information
                 }
-            }
-            catch (Exception ex)
-            { Console.WriteLine("Try again"); }
-
-            try
-            {
-                if (command.StartsWith("set"))
+                else if (command.StartsWith("set"))
                 {
-                    string[] splitCommand = command.Split(' ');
                     _shopService.Set(splitCommand[1], int.Parse(splitCommand[2]));
                 }
+                else if (command.StartsWith("buy"))
+                {
+                    _shopService.Buy(splitCommand[1], int.Parse(splitCommand[2]));
+                }
+                else if (command.StartsWith("topup"))
+                {
+                    _shopService.TopUp(decimal.Parse(splitCommand[1]));
+                }
+                else if (command.StartsWith("show balance"))
+                {
+                    var balance = _shopService.GetBalance();
+                    Console.WriteLine($"Balance: {balance}");
+                }
+                else if (command.StartsWith("show items"))
+                {
+                    var items = _shopService.GetBoughtItems();
+                    items.ForEach(i => Console.WriteLine(i.ToString()));
+                }
+                else if (command.StartsWith("exit"))
+                {
+                    Environment.Exit(0);
+                }
+            }
+
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine("Somethings wrong with your parameters");
             }
             catch (Exception ex)
-            { Console.WriteLine("Please check your input and try again"); }
-
-            if (command.StartsWith("show items"))
             {
-                List<ShopItem> boughtItems = _shopService.GetBoughtItems();
-                if (boughtItems.Count > 0)
-                {
-                    foreach (ShopItem item in boughtItems)
-                    {
-                        Console.WriteLine($"ItemName: {item.Name}");
-                    }
-                }
-                else
-                    Console.WriteLine("The customer hasn't bought anything yet");
-            }
-        
-                
-            if (command.StartsWith("exit"))
-            {
-                Environment.Exit(0);
-            }
-
-            if (command.StartsWith("show balance"))
-            {
-                Console.WriteLine($"{_shopService.GetBalance()}");
-
-            }
-
-            if (command.StartsWith("topup"))
-            {
-                string[] splitCommand = command.Split(' ');
-                _shopService.TopUp(decimal.Parse(splitCommand[1]));
-            }
-
-            if (command.StartsWith("buy"))
-            {
-                string[] splitCommand = command.Split(' ');
-                _shopService.Buy(splitCommand[1], int.Parse(splitCommand[2]));
-            }
-
+                Console.WriteLine("Something wrong has happened!");
+            } 
         }
     }
 }

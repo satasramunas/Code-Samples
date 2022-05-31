@@ -11,40 +11,48 @@ namespace ShopApp.Services
     public class ShopService
     {
         private List<ShopItem> _items;
-        private List<ShopItem> _boughtItems;
         private CustomerItem _customer;
 
         public ShopService()
         {
             _items = new List<ShopItem>();
-            _boughtItems = new List<ShopItem>();
             _customer = new CustomerItem();
         }
 
         public void Add(string name, decimal price, int quantity)
         {
-            ShopItem item = new ShopItem()
+            if (_items.Any(x => x.Name == name))
+            {
+                throw new ArgumentException("This item is already in the inventory");
+            }
+            ShopItem item = new ShopItem // the brackets are not needed anymore if we use this syntax
             {
                 Name = name,
                 Price = price,
                 Quantity = quantity
             };
-            if (!_items.Any(x => x.Name == name))
-            {
-                _items.Add(item);
-            }
-            else
-                Console.WriteLine("This item is already in the inventory list!");
+
+            _items.Add(item);
         }
 
         public void Remove(string name)
         {
+            if (!_items.Any(x => x.Name == name))
+            {
+                throw new ArgumentException("The item does not exist");
+            }
             _items = _items.Where(x => x.Name != name).ToList();
         }
 
         public void Set(string name, int quantity)
         {
-            ShopItem item = _items.First(x => x.Name == name); //using LINQ to select the item by name
+            ShopItem item = _items.FirstOrDefault(x => x.Name == name); //using LINQ to select the item by name
+            
+            if (item == null)
+            {
+                throw new ArgumentException("Item does not exist");
+            }
+
             item.Quantity = quantity;
         }
 
@@ -60,37 +68,44 @@ namespace ShopApp.Services
 
         public void TopUp(decimal money)
         {
-                _customer.Balance += money;
+            _customer.Balance += money;
         }
 
         public void Buy(string name, int quantity)
         {
-            try
+            var item = _items.FirstOrDefault(x => x.Name == name);
+
+            if (item == null)
             {
-                var item = _items.First(x => x.Name == name);
-                if (item.Quantity >= quantity)
-                {
-                    if (item.Price * quantity <= _customer.Balance)
-                    {
-                        item.Quantity -= quantity;
-                        _customer.Balance -= item.Price * quantity;
-                        _boughtItems.Add(item);
-                    }
-                    else
-                        Console.WriteLine("Customer does not have enaugh money");
-                }
-                else
-                    Console.WriteLine("The shop does not have enaugh items");
+                throw new ArgumentException("Item does not exist");
             }
-            catch (Exception ex)
+
+            decimal price = item.Price * quantity;
+
+            if (price > _customer.Balance)
             {
-                Console.WriteLine("Shop item not found");
+                throw new ArgumentException("The customer does not have enough money");
             }
+
+            if (quantity > item.Quantity)
+            {
+                throw new ArgumentException("The shop does not have enough of the required items");
+            }
+
+            item.Quantity -= quantity;
+            _customer.Balance -= price;
+
+            _customer.Cart.Add(new ShopItem
+            {
+                Name = item.Name,
+                Price = item.Price,
+                Quantity = quantity,
+            });
         }
 
         public List<ShopItem> GetBoughtItems()
         {
-            return _boughtItems;
+            return _customer.Cart;
         }
     }
 }

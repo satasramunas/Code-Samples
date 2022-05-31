@@ -11,5 +11,10 @@ namespace ShopApp.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+
+        public override string ToString()
+        {
+            return $"ItemName: {Name}, Price: {Price}, Quantity: {Quantity}";
+        }
     }
 }

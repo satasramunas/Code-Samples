@@ -14,8 +14,6 @@ namespace ShopApp.Services
         private List<ShopItem> _boughtItems;
         private CustomerItem _customer;
 
-        public decimal Balance { get; private set; }
-
         public ShopService()
         {
             _items = new List<ShopItem>();
@@ -60,10 +58,10 @@ namespace ShopApp.Services
             return _customer.Balance;
         }
 
-        public void TopUp(decimal balance)
+        public void TopUp(decimal money)
         {
             {
-                Balance = _customer.Balance += balance;
+                _customer.Balance += money;
             }
         }
 

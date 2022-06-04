@@ -19,5 +19,7 @@ namespace ShopManagementWebApp.Models
         public bool Deleted { get; set; } = false;
 
         public User User { get; set; }
+
+        public int? UserId { get; set; }    // the ? means that the UserId can be nullable. ShopItem gali nepriklausyti useriui.
     }
 }

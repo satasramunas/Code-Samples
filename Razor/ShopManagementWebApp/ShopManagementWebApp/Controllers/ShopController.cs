@@ -33,9 +33,9 @@ namespace ShopManagementWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(CreateShopDto item)    // changed this one also
+        public IActionResult Add(CreateShopDto createItem)    // changed this one also
         {
-            _shopService.Add(item.Item);        // and this one
+            _shopService.Add(createItem.Item);        // and this one
             return RedirectToAction("Index");
         }
 

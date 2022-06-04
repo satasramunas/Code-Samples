@@ -1,17 +1,21 @@
-﻿@model ShopItem
+﻿@using ShopManagementWebApp.Dtos
+@model CreateShopDto
 
 <h2>Add an item</h2>
 
 @using (Html.BeginForm("Add", "Shop", FormMethod.Post)) //action name, controller, method
 {
-    @Html.LabelFor(a => a.Name)
-    @Html.TextBoxFor(a => a.Name)
+    @Html.LabelFor(a => a.Item.Name)
+    @Html.TextBoxFor(a => a.Item.Name)
 
-    @Html.LabelFor(a => a.ShopName)
-    @Html.TextBoxFor(a => a.ShopName)
+    @Html.LabelFor(a => a.Item.ShopName)
+    @Html.TextBoxFor(a => a.Item.ShopName)
 
-    @Html.LabelFor(a => a.ExpiryDate)
-    @Html.TextBoxFor(a => a.ExpiryDate)
+    @Html.LabelFor(a => a.Item.ExpiryDate)
+    @Html.TextBoxFor(a => a.Item.ExpiryDate)
+
+    @Html.LabelFor(a => a.Item.User)
+    @Html.TextBoxFor(a => a.Item.User.Id)
         
     <input type="submit" value="Submit"/>
 }

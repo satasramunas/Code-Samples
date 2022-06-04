@@ -13,5 +13,7 @@ namespace ShopManagementWebApp.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public List<ShopItem> Items { get; set; }
     }
 }

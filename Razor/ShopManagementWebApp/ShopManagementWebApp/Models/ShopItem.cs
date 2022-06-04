@@ -17,5 +17,7 @@ namespace ShopManagementWebApp.Models
         public DateTime ExpiryDate { get; set; }
 
         public bool Deleted { get; set; } = false;
+
+        public User User { get; set; }
     }
 }

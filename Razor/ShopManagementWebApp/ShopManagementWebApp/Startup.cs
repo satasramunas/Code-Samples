@@ -32,8 +32,10 @@ namespace ShopManagementWebApp
             var defaultConnectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<DataContext>(c => c.UseSqlServer(defaultConnectionString));
 
-            services.AddTransient<ShopService>(); // a singleton because we need to hold information
-            //services.AddTransient<ShopService>(); // we would use this if we dont need to keep/hold info
+            services.AddTransient<ShopService>();
+            services.AddTransient<UserService>();
+            // a singleton because we need to hold information
+            // transient if we dont need to keep/hold info
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

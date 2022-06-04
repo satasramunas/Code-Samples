@@ -44,7 +44,7 @@ namespace ShopManagementWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("Items", (string)null);
                 });
 
             modelBuilder.Entity("ShopManagementWebApp.Models.User", b =>
@@ -63,7 +63,7 @@ namespace ShopManagementWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }

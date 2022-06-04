@@ -31,7 +31,7 @@ namespace ShopManagementWebApp.Services
            var item = _dataContext.Items.FirstOrDefault(t => t.Name == name);
             _dataContext.Items.Remove(item);
             _dataContext.SaveChanges();
-            // these lines intad of the one that's below
+            // these lines instead of the one that's below
 
             //_items = _items.Where(x => x.Name != name).ToList();
         }

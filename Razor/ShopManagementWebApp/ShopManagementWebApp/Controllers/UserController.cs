@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShopManagementWebApp.Models;
+using ShopManagementWebApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,17 @@ namespace ShopManagementWebApp.Controllers
 {
     public class UserController : Controller
     {
+        private readonly UserService _userService;
+
+        public UserController(UserService userService)
+        {
+            _userService = userService;
+        }
+
         public IActionResult Index()
         {
-            var users = new List<User>();
-            return View(users);
+            var users = _userService.GetAll();
+            return View(users);     // perduoti users, nes kitaip bus null
         }
 
         [HttpGet]
@@ -26,6 +34,7 @@ namespace ShopManagementWebApp.Controllers
         [HttpPost]
         public IActionResult Add(User user)
         {
+            _userService.Add(user);
             return RedirectToAction("Index");
         }
     }

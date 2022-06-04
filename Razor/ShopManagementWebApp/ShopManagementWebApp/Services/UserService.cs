@@ -12,7 +12,7 @@ namespace ShopManagementWebApp.Services
     {
         private DataContext _dataContext;
 
-        private UserService(DataContext dataContext)
+        public UserService(DataContext dataContext)
         {
             _dataContext = dataContext;
         }

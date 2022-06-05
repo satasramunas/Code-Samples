@@ -22,7 +22,7 @@
 
     <div class="form-group">
         @Html.LabelFor(a => a.Item.UserId)
-        @Html.DropDownListFor(a => a.Item.UserId, new SelectList(@Model.Users, "Id", "FirstName"), "", new {@class = "form-control"})
+        @Html.DropDownListFor(a => a.Item.UserId, new SelectList(@Model.Users, "Id", "FullName"), "", new {@class = "form-control"})
     </div>
 
     <input class="btn btn-primary" type="submit" value="Submit"/>

@@ -1,4 +1,5 @@
 ﻿using ShopManagementWebApp.Data;
+using ShopManagementWebApp.Dtos;
 using ShopManagementWebApp.Models;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,19 @@ namespace ShopManagementWebApp.Services
             _dataContext = dataContext;
         }
 
-        public List<User> GetAll()
+        public List<UserDto> GetAll()
         {
-            return _dataContext.Users.ToList();
+            var entities = _dataContext.Users.ToList();     // uzkraunam is DB
+
+            // tada mappinam i DTO, kur bus man reikalinga info
+            // cia susikursim kiekvienam entity nauja UserDto
+            var dtos = entities.Select(x => new UserDto
+            {
+                Id = x.Id,
+                FullName = $"{x.FirstName} {x.LastName}"
+            }).ToList();
+
+            return dtos;
         }
 
         public void Add(User user)

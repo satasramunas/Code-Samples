@@ -7,6 +7,6 @@ namespace ShopManagementWebApp.Dtos
     {
         public ShopItem Item { get; set; }
 
-        public List<User> Users { get; set; }
+        public List<UserDto> Users { get; set; }
     }
 }

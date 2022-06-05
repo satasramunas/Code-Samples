@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShopManagementWebApp.Dtos;
 using ShopManagementWebApp.Models;
 using ShopManagementWebApp.Services;
 using System;
@@ -20,7 +21,7 @@ namespace ShopManagementWebApp.Controllers
 
         public IActionResult Index()
         {
-            var users = _userService.GetAll();
+            List<UserDto> users = _userService.GetAll();
             return View(users);     // perduoti users, nes kitaip bus null
         }
 
@@ -32,6 +33,8 @@ namespace ShopManagementWebApp.Controllers
         }
 
         [HttpPost]
+
+        // this isn't safe, we should use a Dto. Exposing out user model. And not to give out too much info. 
         public IActionResult Add(User user)
         {
             _userService.Add(user);

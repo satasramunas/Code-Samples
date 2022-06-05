@@ -15,7 +15,7 @@
     @Html.TextBoxFor(a => a.Item.ExpiryDate)
 
     @Html.LabelFor(a => a.Item.UserId)
-    @Html.TextBoxFor(a => a.Item.UserId)
-        
+    @Html.DropDownListFor(a => a.Item.UserId, new SelectList(@Model.Users, "Id", "Name"))
+
     <input type="submit" value="Submit"/>
 }

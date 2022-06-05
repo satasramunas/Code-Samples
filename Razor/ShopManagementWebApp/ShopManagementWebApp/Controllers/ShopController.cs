@@ -13,10 +13,12 @@ namespace ShopManagementWebApp.Controllers
     public class ShopController : Controller
     {
         private ShopService _shopService;
+        private UserService _userService;
 
-        public ShopController(ShopService shopService)
+        public ShopController(ShopService shopService, UserService userService)
         {
             _shopService = shopService;
+            _userService = userService; //injected userService
         }
 
         public IActionResult Index()
@@ -29,6 +31,7 @@ namespace ShopManagementWebApp.Controllers
         public IActionResult Add()
         {
             CreateShopDto item = new CreateShopDto();     // previously it was ShopItem item
+            item.Users = _userService.GetAll();           // add this after injection, because the model was empty previously
             return View(item);
         }
 
@@ -44,5 +47,7 @@ namespace ShopManagementWebApp.Controllers
             _shopService.Delete(name);
             return RedirectToAction("Index");
         }
+
+        // controllers not necessarily have to have references
     }
 }

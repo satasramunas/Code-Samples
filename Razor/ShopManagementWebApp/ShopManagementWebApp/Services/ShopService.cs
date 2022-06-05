@@ -9,9 +9,10 @@ namespace ShopManagementWebApp.Services
     {
         private DataContext _dataContext;
 
-        public ShopService(DataContext dataContext)
+        public ShopService(DataContext dataContext) // if we forget this, dataContext will be null (error thrown)
         {
             _dataContext = dataContext;
+            // when we register our service in startup, we put it in here
             // through dependency injection
         }
 

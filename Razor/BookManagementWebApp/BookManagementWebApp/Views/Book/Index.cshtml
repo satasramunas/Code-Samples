@@ -1,1 +1,31 @@
-﻿
+﻿@using BookManagementWebApp.Dtos
+@model List<BookDto>
+
+<h3>Books</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Actions</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var item in @Model)
+        {
+        <tr>
+          <th scope="row"></th>
+          <td>@item.Id</td>
+          <td>@item.Name</td>
+          <td>@item.Author</td>
+          <td>@Html.ActionLink("Remove", "Delete", "Book", new { Name = @item.Name}, new { @class = "btn btn-primary"})</td>
+        </tr>
+        }
+    
+    
+  </tbody>
+</table>

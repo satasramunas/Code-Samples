@@ -1,7 +1,17 @@
+using BookManagementWebApp.Data;
+using BookManagementWebApp.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var defaultConnectionString = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddDbContext<DataContext>(c => c.UseSqlServer(defaultConnectionString));
+
+builder.Services.AddTransient<BookService>();
+builder.Services.AddTransient<AuthorService>();
 
 var app = builder.Build();
 

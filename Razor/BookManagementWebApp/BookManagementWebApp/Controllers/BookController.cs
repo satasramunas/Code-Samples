@@ -13,10 +13,12 @@ namespace BookManagementWebApp.Controllers
     public class BookController : Controller
     {
         private BookService _bookService;
+        private AuthorService _authorService;
 
-        public BookController(BookService bookService)
+        public BookController(BookService bookService, AuthorService authorService)
         {
             _bookService = bookService;
+            _authorService = authorService;
         }
 
         public IActionResult Index()
@@ -29,14 +31,14 @@ namespace BookManagementWebApp.Controllers
         public IActionResult Add()
         {
             BookDto book = new BookDto();
-            //book.Authors = _bookService.GetAll(); 
+            book.Author = _authorService.GetAll();
             return View(book);
         }
 
         [HttpPost]
-        public IActionResult Add(BookDto book)
+        public IActionResult Add(BookDto bookDto)
         {
-            _bookService.Add(book);
+            _bookService.Add(bookDto);
             return RedirectToAction("Index");
         }
 

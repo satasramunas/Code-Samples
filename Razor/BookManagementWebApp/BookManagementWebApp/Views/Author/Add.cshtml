@@ -6,20 +6,14 @@
 @using (Html.BeginForm("Add", "Author", FormMethod.Post)) //action name, controller, method
 {
     <div class="form-group">
-        @Html.LabelFor(a => a.Id)
-        @Html.TextBoxFor(a => a.Id, "", new {@class = "form-control"})
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(a => a.Name)
         @Html.TextBoxFor(a => a.Name, "", new {@class = "form-control"})
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(a => a.Books)
-        @*@Html.DropDownListFor(a => a.Books, new SelectList(@Model.Books, "Id", "Name"), "", new {@class = "form-control"})*@
         @Html.TextBoxFor(a => a.Books, "", new {@class = "form-control"})
-    </div>
+    </div>*@
 
     <input class="btn btn-primary" type="submit" value="Submit"/>
 

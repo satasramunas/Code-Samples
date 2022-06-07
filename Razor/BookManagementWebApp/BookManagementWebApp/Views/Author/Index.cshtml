@@ -14,13 +14,13 @@
     </tr>
   </thead>
   <tbody>
-      @foreach (var author in @Model)
+      @foreach (AuthorDto author in @Model)
         {
         <tr>
-@*          <th scope="row"></th>*@
           <td>@author.Id</td>
           <td>@author.Name</td>
-          <td>@Html.ActionLink("Remove", "Delete", "Author", new { Name = @author.Name}, new { @class = "btn btn-primary"})</td>
+          <td>@String.Join(";",@author.Books.Select(b => b.Name)) </td>
+          <td>@Html.ActionLink("Remove", "Delete", "Author", new { Id = @author.Id}, new { @class = "btn btn-primary"})</td>
         </tr>
         }
     

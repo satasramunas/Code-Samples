@@ -31,7 +31,7 @@ namespace BookManagementWebApp.Controllers
         public IActionResult Add()
         {
             BookDto book = new BookDto();
-            book.Author = _authorService.GetAll();
+            book.Authors = _authorService.GetAll();
             return View(book);
         }
 

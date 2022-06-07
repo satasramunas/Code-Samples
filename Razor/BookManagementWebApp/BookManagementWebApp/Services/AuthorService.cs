@@ -21,12 +21,11 @@ namespace BookManagementWebApp.Services
         public List<AuthorDto> GetAll()
         {
             var authors = _dataContext.Authors.ToList();
-            var dtos = authors.Select(x => new AuthorDto
+            return authors.Select(x => new AuthorDto
             {
                 Id = x.Id,
                 Name = x.Name
             }).ToList();
-            return dtos;
         }
 
         public void Add(Author author)

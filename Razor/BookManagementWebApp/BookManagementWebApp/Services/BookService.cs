@@ -46,7 +46,7 @@ namespace BookManagementWebApp.Services
 
         public void Delete(string name)
         {
-            var book = _dataContext.Books.FirstOrDefault(t => t.Name == name);
+            Book book = _dataContext.Books.FirstOrDefault(b => b.Name == name);
             _dataContext.Books.Remove(book);
             _dataContext.SaveChanges();
         }

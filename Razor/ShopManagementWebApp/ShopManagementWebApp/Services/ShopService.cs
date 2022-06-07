@@ -1,15 +1,14 @@
 ﻿using ShopManagementWebApp.Data;
 using ShopManagementWebApp.Models;
+using ShopManagementWebApp.Services.Base;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ShopManagementWebApp.Services
 {
-    public class ShopService
+    public class ShopService : BaseService<ShopItem>
     {
-        private DataContext _dataContext;
-
-        public ShopService(DataContext dataContext) // if we forget this, dataContext will be null (error thrown)
+        public ShopService(DataContext dataContext) : base(dataContext) // if we forget this, dataContext will be null (error thrown)
         {
             _dataContext = dataContext;
             // when we register our service in startup, we put it in here
@@ -19,13 +18,6 @@ namespace ShopManagementWebApp.Services
         public List<ShopItem> GetAll()
         {
             return _dataContext.Items.ToList();
-        }
-
-        public void Add(ShopItem item)
-        {
-            item.ExpiryDate = System.DateTime.Now;
-            _dataContext.Items.Add(item);
-            _dataContext.SaveChanges();
         }
 
         public void Delete(string name)

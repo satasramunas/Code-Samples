@@ -1,4 +1,5 @@
 ﻿using ShopManagementWebApp.Data;
+using ShopManagementWebApp.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,20 @@ using System.Threading.Tasks;
 namespace ShopManagementWebApp.Services.Base
 {
     public class BaseService<T>
-        where T : class
+        where T : Entity
     {
-        private DataContext _dataContext;
+        protected DataContext _dataContext;
 
         public BaseService(DataContext dataContext)
         {
             _dataContext = dataContext;
+        }
+
+        public void Create(T entity)
+        {
+            entity.ExpiryDate = DateTime.Now;
+            _dataContext.Set<T>().Add(entity);
+            _dataContext.SaveChanges();
         }
     }
 }

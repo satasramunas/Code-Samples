@@ -1,5 +1,6 @@
 ﻿using ShopManagementWebApp.Data;
 using ShopManagementWebApp.Models;
+using ShopManagementWebApp.Services.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,20 +9,10 @@ using System.Threading.Tasks;
 
 namespace ShopManagementWebApp.Services
 {
-    public class CategoryService
+    public class CategoryService : BaseService<Category>
     {
-        private DataContext _dataContext;
-
-        public CategoryService(DataContext dataContext)
+        public CategoryService(DataContext dataContext) : base(dataContext)
         {
-            _dataContext = dataContext;
-        }
-
-        public void Add(Category category)
-        {
-            category.ExpiryDate = DateTime.Now;
-            _dataContext.Categories.Add(category);
-            _dataContext.SaveChanges();
         }
     }
 }

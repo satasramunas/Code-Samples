@@ -1,6 +1,7 @@
 ﻿using ShopManagementWebApp.Data;
 using ShopManagementWebApp.Dtos;
 using ShopManagementWebApp.Models;
+using ShopManagementWebApp.Services.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,9 @@ using System.Threading.Tasks;
 
 namespace ShopManagementWebApp.Services
 {
-    public class UserService
+    public class UserService : BaseService<User>
     {
-        private DataContext _dataContext;
-
-        public UserService(DataContext dataContext)
+        public UserService(DataContext dataContext) : base(dataContext)
         {
             _dataContext = dataContext;
         }
@@ -31,13 +30,6 @@ namespace ShopManagementWebApp.Services
             }).ToList();
 
             return dtos;
-        }
-
-        public void Add(User user)
-        {
-            user.ExpiryDate = System.DateTime.Now;
-            _dataContext.Users.Add(user);
-            _dataContext.SaveChanges();
         }
     }
 }

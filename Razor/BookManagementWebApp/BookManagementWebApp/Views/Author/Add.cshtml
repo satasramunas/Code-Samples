@@ -1,1 +1,22 @@
-﻿
+﻿@using BookManagementWebApp.Dtos
+@model AuthorDto
+
+<h2>Add an author</h2>
+
+@using (Html.BeginForm("Add", "Book", FormMethod.Post)) //action name, controller, method
+{
+    <div class="form-group">
+        @Html.LabelFor(a => a.Id)
+        @Html.TextBoxFor(a => a.Id, "", new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(a => a.Name)
+        @Html.TextBoxFor(a => a.Name, "", new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(a => a.Books)
+        @Html.TextBoxFor(a => a.Books, "", new {@class = "form-control"})
+    </div>
+}

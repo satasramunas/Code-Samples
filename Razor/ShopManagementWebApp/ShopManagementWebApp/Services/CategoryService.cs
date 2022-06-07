@@ -19,6 +19,7 @@ namespace ShopManagementWebApp.Services
 
         public void Create(Category category)
         {
+            category.ExpiryDate = DateTime.Now;
             _dataContext.Categories.Add(category);
             _dataContext.SaveChanges();
         }

@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace ShopManagementWebApp.Models
 {
-    public class User : Entity
+    public class Category : Entity
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public List<ShopItem> Items { get; set; }
+        public string Name { get; set; }
     }
 }

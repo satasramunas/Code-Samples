@@ -14,5 +14,6 @@ namespace BookManagementWebApp.Models
 
         public Author Author { get; set; }
 
+        public int? AuthorId { get; set; }
     }
 }

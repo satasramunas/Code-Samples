@@ -29,7 +29,10 @@ namespace BookManagementWebApp.Services
             }).ToList();
         }
 
+        //irgi, turim Dto ir permappinma i entity
+        //tada prisidedam, issaugom
         //priima Dto ir tada sukuriam entity viduje
+        //jeigu grazintumem kazka is cia, reiketu grazinti Dto
         public void Add(BookDto bookDto)
         {
             Book entity = new Book

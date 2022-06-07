@@ -37,7 +37,8 @@ namespace BookManagementWebApp.Services
         {
             Book entity = new Book
             {
-                Name = bookDto.Name
+                Name = bookDto.Name,
+                AuthorId = bookDto.AuthorId
             };
             _dataContext.Books.Add(entity);
             _dataContext.SaveChanges();

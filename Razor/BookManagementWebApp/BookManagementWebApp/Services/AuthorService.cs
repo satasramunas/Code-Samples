@@ -37,8 +37,8 @@ namespace BookManagementWebApp.Services
 
         public void Delete(string name)
         {
-            var item = _dataContext.Authors.FirstOrDefault(t => t.Name == name);
-            _dataContext.Authors.Remove(item);
+            var author = _dataContext.Authors.FirstOrDefault(t => t.Name == name);
+            _dataContext.Authors.Remove(author);
             _dataContext.SaveChanges();
         }
     }

@@ -39,5 +39,10 @@ namespace BookManagementWebApp.Controllers
             _authorService.Add(author);
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(string name)
+        {
+            _authorService.Delete(name);
+            return RedirectToAction("Index");
+        }
     }
 }

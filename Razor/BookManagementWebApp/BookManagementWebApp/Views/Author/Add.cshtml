@@ -3,7 +3,7 @@
 
 <h2>Add an author</h2>
 
-@using (Html.BeginForm("Add", "Book", FormMethod.Post)) //action name, controller, method
+@using (Html.BeginForm("Add", "Author", FormMethod.Post)) //action name, controller, method
 {
     <div class="form-group">
         @Html.LabelFor(a => a.Id)
@@ -17,6 +17,10 @@
 
     <div class="form-group">
         @Html.LabelFor(a => a.Books)
+        @*@Html.DropDownListFor(a => a.Books, new SelectList(@Model.Books, "Id", "Name"), "", new {@class = "form-control"})*@
         @Html.TextBoxFor(a => a.Books, "", new {@class = "form-control"})
     </div>
+
+    <input class="btn btn-primary" type="submit" value="Submit"/>
+
 }

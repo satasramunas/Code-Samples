@@ -8,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace ShopManagementWebApp.Models
 {
-    public class ShopItem : Entity
+    public class ShopItem : NamedEntity
     {
-        public string Name { get; set; }
-
         public string ShopName { get; set; }
 
         public bool Deleted { get; set; } = false;

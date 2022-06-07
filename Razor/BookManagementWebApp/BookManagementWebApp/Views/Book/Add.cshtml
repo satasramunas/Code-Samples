@@ -17,7 +17,7 @@
 
     <div class="form-group">
         @Html.LabelFor(a => a.Author)
-        @Html.TextBoxFor(a => a.Author, "", new {@class = "form-control"})
+        @Html.DropDownListFor(a => a.Author, new SelectList(@Model.Author, "Id", "Name"), "", new {@class = "form-control"})
     </div>
 
     <input class="btn btn-primary" type="submit" value="Submit"/>

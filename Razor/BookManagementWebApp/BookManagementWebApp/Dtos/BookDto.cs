@@ -14,5 +14,7 @@ namespace BookManagementWebApp.Dtos
         public string Name { get; set; }
 
         public List<AuthorDto> Author { get; set; }
+
+        public int AuthorId { get; set; }
     }
 }

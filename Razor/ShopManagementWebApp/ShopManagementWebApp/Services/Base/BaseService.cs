@@ -18,7 +18,7 @@ namespace ShopManagementWebApp.Services.Base
             _dataContext = dataContext;
         }
 
-        public void Create(T entity)
+        public void Add(T entity)
         {
             entity.ExpiryDate = DateTime.Now;
             _dataContext.Set<T>().Add(entity);

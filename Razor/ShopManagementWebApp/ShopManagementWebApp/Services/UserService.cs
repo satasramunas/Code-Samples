@@ -35,6 +35,7 @@ namespace ShopManagementWebApp.Services
 
         public void Add(User user)
         {
+            user.ExpiryDate = System.DateTime.Now;
             _dataContext.Users.Add(user);
             _dataContext.SaveChanges();
         }

@@ -23,6 +23,7 @@ namespace ShopManagementWebApp.Services
 
         public void Add(ShopItem item)
         {
+            item.ExpiryDate = System.DateTime.Now;
             _dataContext.Items.Add(item);
             _dataContext.SaveChanges();
         }

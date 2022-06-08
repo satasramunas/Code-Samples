@@ -45,6 +45,9 @@ namespace BookManagementWebApp.Services
             var author = _dataContext.Authors.FirstOrDefault(t => t.Name == name);
             _dataContext.Authors.Remove(author);
             _dataContext.SaveChanges();
+            // these lines instead of the one that's below
+
+            //_items = _items.Where(x => x.Name != name).ToList();
         }
     }
 }

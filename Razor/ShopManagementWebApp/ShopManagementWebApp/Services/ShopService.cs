@@ -1,33 +1,41 @@
 ﻿using ShopManagementWebApp.Data;
+using ShopManagementWebApp.Dtos;
 using ShopManagementWebApp.Models;
+using ShopManagementWebApp.Repositories;
 using ShopManagementWebApp.Services.Base;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ShopManagementWebApp.Services
 {
-    public class ShopService : BaseService<ShopItem>
+    public class ShopService
     {
-        public ShopService(DataContext dataContext) : base(dataContext) // if we forget this, dataContext will be null (error thrown)
+        private RepositoryBase<ShopItem> _shopRepository;
+
+        public ShopService(ShopRepository shopRepository)
         {
-            _dataContext = dataContext;
-            // when we register our service in startup, we put it in here
-            // through dependency injection
+            _shopRepository = shopRepository;
         }
 
         public List<ShopItem> GetAll()
         {
-            return _dataContext.Items.ToList();
+            return _shopRepository.GetAll();
         }
 
-        public void Delete(string name)
+        public void Add(CreateShopDto createShopDto)
         {
-           var item = _dataContext.Items.FirstOrDefault(t => t.Name == name);
-            _dataContext.Items.Remove(item);
-            _dataContext.SaveChanges();
-            // these lines instead of the one that's below
+            //map Dto to entity
+            ShopItem item = new ShopItem
+            {
+                Name = createShopDto.Item.Name,
+                Id = createShopDto.Item.Id
+            };
 
-            //_items = _items.Where(x => x.Name != name).ToList();
+            _shopRepository.Add(item);
+        }
+        public void Delete(int id)
+        {
+           _shopRepository.Delete(id);
         }
     }
 }

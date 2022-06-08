@@ -38,13 +38,13 @@ namespace ShopManagementWebApp.Controllers
         [HttpPost]
         public IActionResult Add(CreateShopDto createItem)    // changed this one also
         {
-            _shopService.Add(createItem.Item);        // and this one
+            _shopService.Add(createItem);        // and this one
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(string name)
+        public IActionResult Delete(int id)
         {
-            _shopService.Delete(name);
+            _shopService.Delete(id);
             return RedirectToAction("Index");
         }
 

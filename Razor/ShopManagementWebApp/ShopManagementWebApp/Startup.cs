@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShopManagementWebApp.Data;
+using ShopManagementWebApp.Repositories;
 using ShopManagementWebApp.Services;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,7 @@ namespace ShopManagementWebApp
 
             services.AddTransient<ShopService>();
             services.AddTransient<UserService>();
+            services.AddTransient<ShopRepository>();
             // a singleton because we need to hold information
             // transient if we dont need to keep/hold info
         }

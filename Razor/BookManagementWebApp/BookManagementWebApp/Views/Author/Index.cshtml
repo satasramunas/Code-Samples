@@ -19,7 +19,7 @@
         <tr>
           <td>@author.Id</td>
           <td>@author.Name</td>
-          <td>@String.Join(";",@author.Books.Select(b => b.Name)) </td>
+          <td>@String.Join("; ",@author.Books.Select(b => b.Name)) </td>
           <td>@Html.ActionLink("Remove", "Delete", "Author", new { Id = @author.Id}, new { @class = "btn btn-primary"})</td>
         </tr>
         }

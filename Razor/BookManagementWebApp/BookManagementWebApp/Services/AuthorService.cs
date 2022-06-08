@@ -1,6 +1,7 @@
 ﻿using BookManagementWebApp.Data;
 using BookManagementWebApp.Dtos;
 using BookManagementWebApp.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,16 @@ namespace BookManagementWebApp.Services
 
         public List<AuthorDto> GetAll()
         {
-            var authors = _dataContext.Authors.ToList();
+            var authors = _dataContext.Authors.Include(i => i.Books).ToList();
             return authors.Select(x => new AuthorDto
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = x.Name,
+                Books = x.Books.Select(y => new BookDto
+                {
+                    Id = y.Id,
+                    Name = y.Name
+                }).ToList()
             }).ToList();
         }
 

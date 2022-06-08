@@ -4,7 +4,7 @@
 
 namespace BookManagementWebApp.Migrations
 {
-    public partial class init : Migration
+    public partial class bolt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

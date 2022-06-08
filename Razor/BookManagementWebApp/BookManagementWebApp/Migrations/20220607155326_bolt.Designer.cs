@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookManagementWebApp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220606171221_init")]
-    partial class init
+    [Migration("20220607155326_bolt")]
+    partial class bolt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,10 +64,15 @@ namespace BookManagementWebApp.Migrations
             modelBuilder.Entity("BookManagementWebApp.Models.Book", b =>
                 {
                     b.HasOne("BookManagementWebApp.Models.Author", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorId");
 
                     b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("BookManagementWebApp.Models.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

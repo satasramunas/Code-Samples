@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TodoWebApi.Dtos;
+using TodoWebApi.Helpers;
 using TodoWebApi.Models;
 using TodoWebApi.Respositories;
 
@@ -37,6 +38,16 @@ namespace TodoWebApi.Services
             return dto; 
         }
 
+        public async Task<TodoItemDto> GetByIdWithDiscount(int id)
+        {
+            var dto = await GetById(id);
+
+            dto.Price = DiscountHelper.GetDiscountPrice(dto.Price);
+            // apply 10% discount;
+
+            return dto;
+        }
+
         public async Task Create(CreateTodoItemDto todoItemDto)
         {
             var entity = _mapper.Map<TodoItem>(todoItemDto);
@@ -46,12 +57,8 @@ namespace TodoWebApi.Services
 
         public async Task Update(CreateTodoItemDto todoItemDto)
         {
-            var entity = new TodoItem
-            {
-                Name = todoItemDto.Name
-            };
-
-            //Use automapper
+            var entity = _mapper.Map<TodoItem>(todoItemDto);
+            
             await _todoItemRepository.UpdateAsync(entity);
         }
 

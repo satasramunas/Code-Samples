@@ -43,6 +43,20 @@ namespace TodoWebApi.Controllers
             
         }
 
+        [HttpGet("{id}/discount")]
+        public async Task<IActionResult> GetByIdWithDiscount(int id)
+        {
+            try
+            {
+                return Ok(await _todoItemService.GetById(id));
+            }
+            catch (ItemNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create(CreateTodoItemDto todoItem)
         {

@@ -14,6 +14,8 @@ namespace TodoWebApi.Dtos
 
         public string LastName { get; set; }
 
+        public decimal Price { get; set; }
+
         public DateTime DateCreated { get; set; }
     }
 }
